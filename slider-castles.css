@@ -1,0 +1,147 @@
+/*CSS Variables*/
+:root {
+  --color-white: white;
+  --color-light-grey: rgb(210, 212, 214);
+  --color-blue: #2d4b9b;
+  --color-black: black;
+  --spacing: 0.1rem;
+}
+
+/*Global Styles*/
+*, ::after, ::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+/*Slider Styles*/
+section.slider {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  /* border: 1px solid black; */
+  position: relative;
+}
+
+.slider__container {
+  display: flex;
+  /* height: 370px; */
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all .5s ease-in-out;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide h4 {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: .2rem .5rem;
+  color: var(--color-light-grey);
+  background: rgba(0, 0, 0, .7);
+  border-radius: 5px;
+  border: 1px solid var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: var(--spacing);
+  margin: 1.2rem 0 .5rem 0;
+}
+.slide h4.current {
+  animation: currentslide .85s ease-in;
+}
+@keyframes currentslide {
+ 0% {
+  opacity: 0;
+  transform: translateX(50px);
+ }
+ 25% {
+  opacity: 0;
+  transform: translateX(50px);
+ }
+ 100% {
+  opacity: 1;
+  transform: translateX(0px);
+ }
+}
+
+p.number {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  padding: .1rem .5rem;
+  color: var(--color-light-grey);
+  background: rgba(0, 0, 0, .7);
+  border-radius: 5px;
+  border: 1px solid var(--color-white);
+}
+
+.btn {
+  position: absolute;
+  /* top: 175px; */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  padding: .45rem .8rem;
+  font-size: 1.4rem;
+  border-radius: 50%;
+  border: transparent;
+  border: 2px solid var(--color-black);
+  cursor: pointer;
+  outline: none;
+  transition: all .4s;
+}
+.btn:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.next-btn {
+  right: 20px;
+  padding-left: 16px;
+}
+.prev-btn {
+  left: 20px;
+  padding-right: 16px;
+}
+
+/*JS*/
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide.next {transform: translateX(100%);}
+.slide.last {transform: translateX(-100%);}
+
+/*Media Queries*/
+@media(max-width: 800px) {
+  .btn {
+    font-size: 1.2rem;
+    padding: .35rem .7rem;
+  }
+}
