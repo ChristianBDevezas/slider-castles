@@ -144,7 +144,7 @@ const showCurrentTitle = () => {
   console.log(index, titleSlides[index]);
 }
 
-// 
+// buttons event
 prevBtn.addEventListener("click", () => {
   moveSlider("previous");
   index--;
