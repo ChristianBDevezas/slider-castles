@@ -30,37 +30,37 @@ const container = document.querySelector(".slider__container");
 const sliderButtons = document.querySelector(".slider__buttons");
 
 // copy the data array of objects to a new variable
-let castles = [...data];
+let technologies = [...data];
 
 // if length is 2, add copies of slides
-// if(data.length === 2) castles = [...data, ...data];
+if(data.length === 2) technologies = [...data, ...data];
 
 // populate container with map method
-container.innerHTML = castles.map((castle, slideIndex) => {
-    const { img, name, number } = castle;
-
+container.innerHTML = technologies.map((technology, slideIndex) => {
+    const { img, name, number } = technology;
     let position = "next";
 
     if(slideIndex === 0) position = "active";
 
-    if(slideIndex === castles.length - 1) position = "last";
+    if(slideIndex === technologies.length - 1) position = "last";
+
+    if(data.length <= 1) position = "active";
 
     return `<article class="slide ${position}">
-              <img src=${img} class="img" alt="${name}"/>
-              <h4>${name}</h4>
-              <p class="number">${number} / ${data.length}</p>
+            <img src=${img} class="img" alt="${name}"/>
+            <h4>${name}</h4>
+            <p class="number">${number} / ${data.length}</p>
             </article>`;
 }).join("");
 
 // populate container with forEach method
-// castles.forEach((castle, slideIndex) => {
-//   const { img, name, number } = castle;
-
+// technologies.forEach((technology, slideIndex) => {
+//   const { img, name, number } = technology;
 //     let position = "next";
 
 //     if(slideIndex === 0) position = "active";
 
-//     if(slideIndex === castles.length - 1) position = "last";
+//     if(slideIndex === technologies.length - 1) position = "last";
 
 //     if(data.length <= 1) position = "active";
 
@@ -91,6 +91,12 @@ sliderButtons.innerHTML = `
 const nextBtn = document.querySelector(".next-btn");
 const prevBtn = document.querySelector(".prev-btn");
 
+// if length is 1 hide buttons
+if(data.length === 1) {
+  nextBtn.style.display = "none";
+  prevBtn.style.display = "none";
+}
+
 const moveSlider = (type) => {
   // get all three slides active, last and next
   const active = document.querySelector(".active");
@@ -101,6 +107,7 @@ const moveSlider = (type) => {
   if(!next) next = container.firstElementChild;
   console.log(next);
   
+  // when we have multiple classes, we can specify which class using brackets
   active.classList.remove("active");
   last.classList.remove("last");
   next.classList.remove("next");
